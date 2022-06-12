@@ -12,15 +12,15 @@ import {
   const initialState={
     addTodo:{
       loadng: false,
-    error: false,
-     data: {},
+       error: false,
+    //  data: {},
     },
     getTodos:{
       loading:false,
       error: false,
-      data:[],
-    }
-    
+      
+    },
+    data:[],
   };
 export const todoReducer = (state= initialState, {type,payload}) =>{
     
@@ -40,9 +40,9 @@ export const todoReducer = (state= initialState, {type,payload}) =>{
           getTodos:{
             ...state.getTodos,
             loading: false,
-            data:payload,
-          }
-          
+            
+          },
+          data:payload,
         }
         
       }
@@ -63,22 +63,22 @@ export const todoReducer = (state= initialState, {type,payload}) =>{
         return{
           ...state,
           addTodo:{
-            ...state.addTodo,
+            // ...state.addTodo,
             loading: true,
+            error:false
           }
         }
       }
       case ADD_TODO_SUCCESS:{
         return{
           ...state,
-          getTodos:{
-            data:[...state.getTodos.data,payload]
-          },
           addTodo:{
-            ...state.addTodo,
+            // ...state.addTodo,
             loading: false,
-            data:payload,
-          }
+            error:false
+            // data:payload,
+          }, 
+          data:[...state.data,payload]
           
         }
         
@@ -87,7 +87,7 @@ export const todoReducer = (state= initialState, {type,payload}) =>{
         return{
           ...state,
           addTodo:{
-            ...state.addTodo,
+            // ...state.addTodo,
             loading: false,
             error:true,
           }

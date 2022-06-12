@@ -5,37 +5,38 @@ import { getTodos, todoAdd } from "../store/action"
 const Todo = () => {
   const ref = useRef()
   const dispatch = useDispatch()
-  const {loading,error, data:todos} = useSelector((state)=>state.todo.getTodos);
+  const {getTodos:gTodos,addTodo:aTodo, data:todos} = useSelector((state)=>state.todo);
 
 
-  const {loading:addButtonLoading} = useSelector((state)=>state.todo.addTodo)
+  // const {loading:addButtonLoading} = useSelector((state)=>state.todo.addTodo)
 
 
 
   const addNew = ()=>{
     let value = ref.current.value;
     // console.log(value)
-    todoAdd(dispatch,{
+    dispatch(todoAdd({
       value:value,
       isCompleted:false
-    })
+    }))
     ref.current.value = null
   }
 
 
 
   useEffect(()=>{
-    getTodos(dispatch)
+    // getTodos(dispatch)
+    dispatch(getTodos())
  
 },[])
 
-if(loading) return <h1>Loading...</h1>
-if(error) return  <h1>Something went wrong</h1>
+if(gTodos.loading) return <h1>Loading...</h1>
+else if(gTodos.error) return  <h1>Something went wrong</h1>
   return (
     <div>TodoApp:<br/>
      <div>
        <input ref={ref} type="text" placeholder="Your Text Here...."  />
-      <button onClick={addNew} disabled={addButtonLoading}>ADD</button>
+      <button onClick={addNew} disabled={aTodo.loading}>ADD</button>
       </div>
       {todos.map((todo)=>
         (

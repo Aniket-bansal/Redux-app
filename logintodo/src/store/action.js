@@ -5,7 +5,7 @@ export const counterDec =()=> ({type:COUNTER_DECREMENT});
 
 
 // TODO App
-export const todoAdd = (dispatch,payload)=>{
+export const todoAdd =(payload)=> (dispatch)=>{
    dispatch({type: ADD_TODO_LOADING})
 
       axios.post("http://localhost:8080/todos",payload).then(r=>{
@@ -22,7 +22,7 @@ export const todoUpdate = (payload)=>({type: UPDATE_TODO, payload})
 export const todoDelete = (id)=>({type: DELETE_TODO, payload:id})
 
 
-export const getTodos = (dispatch)=>{
+export const getTodos=() => (dispatch)=>{
    dispatch({type: GET_TODOS_LOADING})
 
      return axios
