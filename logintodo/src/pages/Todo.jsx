@@ -41,7 +41,32 @@ else if(gTodos.error) return  <h1>Something went wrong</h1>
       {todos.map((todo)=>
         (
         <div key={todo.id}>
-         {todo.value}
+         <div style={{ 
+          width: "20%",
+           margin: "auto",
+          border: '1px solid',
+          display: 'flex',
+          gap: "15px",
+          flexDirection: 'row'
+         }}>
+          
+          <input type="checkbox" id="check" onClick={()=>{
+            var checkbox = document.getElementById("check");
+            var text = document.getElementById("task");
+            if(checkbox.checked == true)
+            {
+              text.style.textDecoration = "line-through"
+              text.style.color = "grey"
+            }
+            else{
+              text.style.textDecoration = "line-through"
+                text.style.color = "grey"
+            }
+          }} />
+          <br/>
+         <h3 id="task">{todo.value}</h3>
+          </div> 
+         
         </div>
       ))}
     </div>
